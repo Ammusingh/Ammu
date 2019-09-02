@@ -1,0 +1,31 @@
+<?php 
+
+include('phpmailer/PHPMailerAutoload.php');
+ $mail = new PHPMailer();
+$mail->IsSMTP(); 
+$mail->SMTPAuth = true; 
+$mail->SMTPSecure = "ssl"; 
+$mail->Host = "mail.proyotech.in"; 
+$mail->Port = 465; 
+$mail->Username = "info@proyotech.in"; 
+$mail->Password = "info@proyo123"; 
+$mail->setfrom('info@proyotech.in'); 
+$mail->isHTML(true);
+$mail->Subject = "Contact Request";
+$mail->Body = 'Name :'.$_POST["name"].'<br>From : '.$_POST["email"].'<br> Message : '.$_POST["message"]; 
+// $destino = "amanrawat429@gmail.com"; 
+$mail->addaddress("amanrawat429@gmail.com");
+  
+  if(!$mail->Send()){
+	echo '<script language="javascript" type="text/javascript"> 
+                alert("Message not send");
+                window.location = "index.html";
+        </script>';
+  }
+  else {
+ echo '<script language="javascript" type="text/javascript"> 
+                alert("Message successfully send");
+                window.location = "index.html";
+        </script>'; 
+  }
+?>
